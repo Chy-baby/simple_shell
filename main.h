@@ -98,7 +98,7 @@ typedef struct r_var_s
 typedef struct cmdArgs
 {
 	char *name;
-	int (*f)(data *runtime_data);
+	int (*f)(data *);
 } cmdArgs_t;
 
 

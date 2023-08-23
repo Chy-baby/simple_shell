@@ -8,6 +8,12 @@
 
 int (*getBuiltinf(char *cmd))(data *)
 {
+	int Env(data *);
+int Exit(data *);
+int setenv_c(data *);
+int unsetEnv(data *);
+int cd_sh(data *);
+int Help(data *);
 	cmdArgs_t cmdArg[] = {
 		{ "env", Env },
 		{ "exit", Exit},
