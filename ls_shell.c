@@ -2,74 +2,81 @@
 
 
 /**
- * err_path - prints error message  path and failure denied permission
- * @runtime_data: data
- *
- * Return:returns error string.
+ * HelpSetEnv - information on  builtin setenv
+ * Return: no return
  */
-char *err_path(data *runtime_data)
+void HelpSetEnv(void)
 {
-	int len;
-	char *str;
-	char *err;
 
-	str = intTostr(runtime_data->count);
-	len = strLen(runtime_data->argv[0]) + strLen(str);
-	len += strLen(runtime_data->args[0]) + 24;
-	err = malloc(sizeof(char) * (len + 1));
-	if (err == 0)
-	{
-		free(err);
-		free(str);
-		return (NULL);
-	}
-	strCpy(err, runtime_data->argv[0]);
-	strCat(err, ": ");
-	strCat(err, str);
-	strCat(err, ": ");
-	strCat(err, runtime_data->args[0]);
-	strCat(err, ": Permissions denied\n");
-	strCat(err, "\0");
-	free(str);
-	return (err);
+	char *help = "setenv: setenv (const char *name, const char *value,";
+
+	write(STDOUT_FILENO, help, strLen(help));
+	help = "int replace)\n\t";
+	write(STDOUT_FILENO, help, strLen(help));
+	help = "Adds new definition \n";
+	write(STDOUT_FILENO, help, strLen(help));
+}
+/**
+ * helpUnsetEnv - information on builtin unsetenv
+ * Return: no return
+ */
+void helpUnsetEnv(void)
+{
+	char *help = "unsetenv: unsetenv (const char *name)\n\t";
+
+	write(STDOUT_FILENO, help, strLen(help));
+	help = "Remove an entry completely \n";
+	write(STDOUT_FILENO, help, strLen(help));
 }
 
 
-
 /**
- * err_env - function that prints  error message for env in get_env.
- * @runtime_data: data relevant
- * Return: returns error message.
+ * Help_general -help information for the help builtin
+ * Return: no return
  */
-char *err_env(data *runtime_data)
+void Help_general(void)
 {
-	int len;
-	char *err;
-	char *str;
-	char *err_msg;
+	char *help = "This section explains using the 'help' feature\n";
 
-	str = intTostr(runtime_data->count);
-	err_msg = ": Cannot add or remove things from the environment.\n";
-	len = strLen(runtime_data->argv[0]) + strLen(str);
-	len += strLen(runtime_data->args[0]) + strLen(err_msg) + 4;
-	err = malloc(sizeof(char) * (len + 1));
-	if (err == 0)
-	{
-		free(err);
-		free(str);
-		return (NULL);
-	}
+	write(STDOUT_FILENO, help, strLen(help));
+	help = "For more details, enter 'help'.";
+	write(STDOUT_FILENO, help, strLen(help));
+	help = "Try 'help name' for more infomation on 'name'.\n\n ";
+	write(STDOUT_FILENO, help, strLen(help));
+	help = "[args]]\n  setenv: setenv [variable] [value]  unsetenv: \n ";
+	write(STDOUT_FILENO, help, strLen(help));
+	help = "setenv: setenv [variable] [value]\nunsetenv: unsetenv [variable] \n";
+	write(STDOUT_FILENO, help, strLen(help));
+	write(STDOUT_FILENO, help, strLen(help));
+	help = " alias: alias name cd [-L|[-P [-e]] [-@]] [dir] ";
+	write(STDOUT_FILENO, help, strLen(help));
+	help = "exit: exit [n]\nenv: env [option] [name=value] [command [args]] \n ";
 
+}
+/**
+ * Help_exit -information on the buiLt in exit
+ * Return: no return
+ */
+void Help_exit(void)
+{
+	char *help = "exit:goodbye user \n";
 
+	write(STDOUT_FILENO, help, strLen(help));
+	help = "Exits the shell with n,if n is not found then exit";
+	write(STDOUT_FILENO, help, strLen(help));
+	help = "status is of the last command\n";
+	write(STDOUT_FILENO, help, strLen(help));
+}
+/**
+ * HelpEnv - Help information for the builtin env
+ * Return: no return
+ */
+void HelpEnv(void)
+{
+	char *Help = "env: env [option] [name=value] [command [args]]\n\t";
 
-	strCpy(err, runtime_data->argv[0]);
-	strCat(err, ": ");
-	strCat(err, str);
-	strCat(err, ": ");
-	strCat(err, runtime_data->args[0]);
-	strCat(err, err_msg);
-	strCat(err, "\0");
-	free(str);
+	write(STDOUT_FILENO, Help, strLen(Help));
+	Help = "Print enviroment.\n";
+	write(STDOUT_FILENO, Help, strLen(Help));
 
-	return (err);
 }

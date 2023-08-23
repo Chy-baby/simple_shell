@@ -1,7 +1,7 @@
 #include "main.h"
 
 /**
- * strCatCd - function that concatenates the message for cd check
+ * strCatCd - function that concatenates the message for cd error
  *
  * @runtime_data: Relevant data (counter, arguments) for the runtime.
  * @err_msg:err message to print
@@ -14,7 +14,8 @@ char *strCatCd(data *runtime_data, char *err_msg, char *err, char *str)
 
 	char *Iflag;
 
-	strCpy(err, runtime_data - > argv[0]);
+	strCpy(err, runtime_data->argv[0]);
+
 	strCat(err, ": ");
 	strCat(err, str);
 	strCat(err, ": ");
@@ -114,11 +115,12 @@ char *error_not_found(data *runtime_data)
 }
 
 /**
- *err_exit_msg -  error messages exiting within the context of the function.
+ * err_exit_msg -  error message for
+ * exiting within the context of the function.
  * @runtime_data: Relevant data (counter, arguments) for the runtime.
  * Return:error message
  */
-char *err_exit_msg(data runtime_data)
+char *err_exit_msg(data *runtime_data)
 {
 	int len;
 	char *err;
